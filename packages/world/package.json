@@ -1,0 +1,24 @@
+{
+  "name": "world",
+  "version": "0.0.0",
+  "description": "world package",
+  "homepage": "",
+  "license": "ISC",
+  "module": "dist/world.es.js",
+  "main": "dist/world.js",
+  "directories": {
+    "dist": "dist",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "call ../../node_modules/.bin/rollup -c ../../rollup.config.js",
+    "postbuild": "npm run docs",
+    "docs": "call ../../node_modules/.bin/typedoc src/index.ts --options ../../typedoc.json --tsconfig ../../tsconfig.json"
+  },
+  "dependencies": {
+  }
+}
