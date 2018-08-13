@@ -2,13 +2,13 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.0.0-rc.0"
-  },
-  "dependencies": {
+    "lerna": "^3.0.0-rc.0",
     "rollup": "^0.64.1",
     "rollup-plugin-typescript2": "^0.16.1",
     "typescript": "^3.0.1",
     "typedoc": "^0.11.1",
     "typedoc-plugin-markdown": "^1.1.13"
+  },
+  "dependencies": {
   }
 }
