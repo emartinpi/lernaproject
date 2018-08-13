@@ -1,4 +1,6 @@
-import typescript from 'rollup-plugin-typescript2'
+import typescript from 'rollup-plugin-typescript2';
+import tslint from 'rollup-plugin-tslint';
+
 const pkg = require(`${process.env.INIT_CWD}\\package.json`);
 
 export default {
@@ -18,8 +20,16 @@ export default {
     ...Object.keys(pkg.peerDependencies || {}),
   ],
 plugins: [
-    typescript({
-      typescript: require('typescript'),
-    }),
+  tslint({
+    exclude: '/node_modules/**',
+    include: `${process.env.INIT_CWD}/src/**`
+  }),
+  typescript({
+    tsconfigOverride: {
+      include: [
+        `${process.env.INIT_CWD}\\src\\**\\*`
+      ]
+    }
+  }),
   ],
 }

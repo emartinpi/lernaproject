@@ -4,25 +4,9 @@
 
 ## Index
 
-### Functions
+### Classes
 
-* [greet](_index_.md#greet)
+* [Core](../classes/_index_.core.md)
 
 ---
-
-## Functions
-
-<a id="greet"></a>
-
-### `<Const>` greet
-
-▸ **greet**(): `void`
-
-*Defined in index.ts:4*
-
-Función para saludar
-
-**Returns:** `void`
-
-___
 

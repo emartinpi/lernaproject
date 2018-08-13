@@ -1,4 +1,5 @@
-/**
- * Función para saludar
- */
-export const greet = () => console.log('Hello, world!')
+export class Core {
+   public greet(): string {
+        return "Hello  world";
+    }
+}
