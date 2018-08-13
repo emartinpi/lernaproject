@@ -1,0 +1,20 @@
+0 silly argv { _: [ 'create' ],
+0 silly argv   progress: true,
+0 silly argv   sort: true,
+0 silly argv   ci: false,
+0 silly argv   loglevel: 'info',
+0 silly argv   lernaVersion: '3.0.0-rc.0',
+0 silly argv   '$0':
+0 silly argv    '..\\..\\scoop\\apps\\nodejs\\current\\bin\\node_modules\\lerna\\cli.js',
+0 silly argv   name: 'core' }
+1 info version 3.0.0-rc.0
+2 verbose rootPath C:\Users\x268815\projects\darwin
+3 error Error: Command failed: git config --get user.email
+3 error
+3 error
+3 error     at makeError (C:\Users\x268815\projects\darwin\node_modules\execa\index.js:172:9)
+3 error     at Function.module.exports.sync (C:\Users\x268815\projects\darwin\node_modules\execa\index.js:341:15)
+3 error     at Object.execSync (C:\Users\x268815\projects\darwin\node_modules\@lerna\child-process\index.js:22:16)
+3 error     at CreateCommand.gitConfig (C:\Users\x268815\projects\darwin\node_modules\@lerna\create\index.js:179:34)
+3 error     at CreateCommand.initialize (C:\Users\x268815\projects\darwin\node_modules\@lerna\create\index.js:106:47)
+3 error     at Promise.resolve.then (C:\Users\x268815\projects\darwin\node_modules\@lerna\command\index.js:242:24)
