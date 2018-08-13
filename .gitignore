@@ -3,3 +3,7 @@ dist
 lerna-debug.log
 .rpt2_cache
 .DS_Store
+
+packages/*/node_modules
+packages/*/dist
+packages/*/.rpt2_cache
