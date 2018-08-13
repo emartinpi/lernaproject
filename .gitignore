@@ -1,4 +1,5 @@
 node_modules
-packages/*/node_modules
-packages/*/dist
+dist
 lerna-debug.log
+.rpt2_cache
+.DS_Store
