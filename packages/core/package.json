@@ -1,0 +1,22 @@
+{
+  "name": "core",
+  "version": "0.0.0",
+  "description": "core package",
+  "homepage": "",
+  "license": "ISC",
+  "module": "dist/core.es.js",
+  "main": "dist/core.js",
+  "directories": {
+    "dist": "dist",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "call ../../node_modules/.bin/rollup -c ../../rollup.config.js"
+  },
+  "dependencies": {
+  }
+}
