@@ -1,13 +1,17 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
-    ],
-    "jsRules": {},
-    "rules": {
-        "no-any": true,
-        "no-unused-variable": true,
-        "quotemark": [true, "single"]
-    },
-    "rulesDirectory": []
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint-config-airbnb"
+  ],
+  "jsRules": {},
+  "rules": {
+    "class-name": true,
+    "no-any": true,
+    "no-unused-variable": true,
+    "quotemark": [
+      true,
+      "single"
+    ]
+  },
+  "rulesDirectory": []
 }
