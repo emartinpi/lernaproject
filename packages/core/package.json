@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
+    "test": "call ../../node_modules/.bin/jest --config ../../jest.config.js",
     "build": "call ../../node_modules/.bin/rollup -c ../../rollup.config.js",
     "postbuild": "npm run docs",
     "docs": "call ../../node_modules/.bin/typedoc src/index.ts --options ../../typedoc.json --tsconfig ../../tsconfig.json"
