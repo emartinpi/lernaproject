@@ -1,5 +1,5 @@
 export class World {
-   public hello(): string {
-        return "Hello  world";
-    }
+  public hello(): string {
+    return 'Hello world';
+  }
 }

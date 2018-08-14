@@ -16,3 +16,6 @@ Se ejecuta con ``lerna run test`` y en un paquete individual con ``npm run test`
 
 ## Documentación de la API
 * ["Core"](packages/core/docs/README.md)
+
+## [Changelog](changelog.md)
+ 
