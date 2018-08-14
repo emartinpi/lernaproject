@@ -6,7 +6,8 @@
     "jsRules": {},
     "rules": {
         "no-any": true,
-        "no-unused-variable": true
+        "no-unused-variable": true,
+        "quotemark": [true, "single"]
     },
     "rulesDirectory": []
 }
