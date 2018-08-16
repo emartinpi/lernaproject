@@ -14,10 +14,10 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "call ../../node_modules/.bin/rollup -c ../../rollup.config.js",
+    "test": "npx ../../node_modules/.bin/jest --config ../../jest.config.js",
+    "build": "npx ../../node_modules/.bin/rollup -c ../../rollup.config.js",
     "postbuild": "npm run docs",
-    "docs": "call ../../node_modules/.bin/typedoc src/index.ts --options ../../typedoc.json --tsconfig ../../tsconfig.json"
+    "docs": "npx ../../node_modules/.bin/typedoc src/index.ts --options ../../typedoc.json --tsconfig ../../tsconfig.json"
   },
   "dependencies": {
   }
