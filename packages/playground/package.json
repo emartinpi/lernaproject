@@ -1,0 +1,25 @@
+{
+  "name": "@monorepo/playground",
+  "private": true,
+  "version": "0.0.0",
+  "description": "playground package",
+  "homepage": "",
+  "license": "ISC",
+  "module": "dist/playground.es.js",
+  "main": "dist/playground.js",
+  "directories": {
+    "dist": "dist",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "serve": "npx ../../node_modules/.bin/jest --config ../../jest.config.js",
+    "e2e": "npx ../../node_modules/.bin/typedoc src/index.ts --options ../../typedoc.json --tsconfig ../../tsconfig.json"
+  },
+  "dependencies": {
+    "@monorepo/core": "^0.0.0",
+    "@monorepo/world": "^0.0.0"
+  }
+}

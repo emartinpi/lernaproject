@@ -1,4 +1,4 @@
-[core](../README.md) > ["index"](../modules/_index_.md) > [Core](../classes/_index_.core.md)
+[@monorepo/core](../README.md) > ["core"](../modules/_core_.md) > [Core](../classes/_core_.core.md)
 
 # Class: Core
 
@@ -10,7 +10,7 @@
 
 ### Methods
 
-* [greet](_index_.core.md#greet)
+* [greet](_core_.core.md#greet)
 
 ---
 
@@ -22,7 +22,7 @@
 
 ▸ **greet**(): `string`
 
-*Defined in index.ts:2*
+*Defined in core.ts:4*
 
 **Returns:** `string`
 
