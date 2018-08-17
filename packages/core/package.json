@@ -1,11 +1,13 @@
 {
-  "name": "core",
+  "name": "@monorepo/core",
+  "private": true,
   "version": "0.0.0",
   "description": "core package",
   "homepage": "",
   "license": "ISC",
-  "module": "dist/core.es.js",
-  "main": "dist/core.js",
+  "module": "dist/@monorepo/core/core.es.js",
+  "main": "dist/@monorepo/core/core.umd.js",
+  "types": "dist/@monorepo/core/index.d.ts",
   "directories": {
     "dist": "dist",
     "test": "__tests__"
@@ -16,9 +18,11 @@
   "scripts": {
     "test": "npx ../../node_modules/.bin/jest --config ../../jest.config.js",
     "build": "npx ../../node_modules/.bin/rollup -c ../../rollup.config.js",
+    "build2": "npx ../../build.js",
     "postbuild": "npm run docs",
     "docs": "npx ../../node_modules/.bin/typedoc src/index.ts --options ../../typedoc.json --tsconfig ../../tsconfig.json"
   },
   "dependencies": {
+
   }
 }
