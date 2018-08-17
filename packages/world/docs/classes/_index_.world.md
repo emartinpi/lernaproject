@@ -1,4 +1,4 @@
-[world](../README.md) > ["index"](../modules/_index_.md) > [World](../classes/_index_.world.md)
+[@monorepo/world](../README.md) > ["index"](../modules/_index_.md) > [World](../classes/_index_.world.md)
 
 # Class: World
 
