@@ -9,10 +9,11 @@ Package: Proyectos
 
 ## [Unreleased]
 
-- Se agrego Lerna, como gestor Monorepo
-- Se Agrego typescript. 
-- Se Agrego Rollup. Los packages hacen uso de rollup.config.js
-- Se Agrego Jest para pruebas unitarias. Los packages hacen uso de [tsconfig.jest.json](https://github.com/kulshekhar/ts-jest)
-- Se agrego Tslint como linter, usando la configuración de [airbnb](https://github.com/progre/tslint-config-airbnb)
-- Se Agregó typedoc para generar la documentación de los ficheros .ts de manera automatizada.
-- Se creó una carpeta llamada .vscode para centralizar la configuración del workspace de Visual Studio Code y no tener conflictos con las tabulaciones, espacios, etc.
+- Se agrega Lerna, como gestor Monorepo
+- Se agrega typescript.
+- Se agrega Rollup. Los packages hacen uso de rollup.config.js
+- Se agrega Jest para pruebas unitarias. Los packages hacen uso de [tsconfig.jest.json](https://github.com/kulshekhar/ts-jest)
+- Se agrega Tslint como linter, usando la configuración de [airbnb](https://github.com/progre/tslint-config-airbnb)
+- Se agrega typedoc para generar la documentación de los ficheros .ts de manera automatizada.
+- Se agrega editorconfig para los estilos de codificacion entre IDEs
+- Se crea una carpeta llamada .vscode para centralizar la configuración del workspace de Visual Studio Code y no tener conflictos con las tabulaciones, espacios, etc (no sobreescribe a editorconfig).

@@ -1,5 +1,13 @@
 # Monorepo base
 
+## IDE y extensiones recomendadas
+Se aconseja el uso de Visual Studio Code aunque se puede usar cualquir IDE donde el desarrollador se sienta cómodo.
+
+Las extensiones recomendadas a continuación pertenecen a este IDE, pero es muy probable que estén desarrolladas también para otros:
+- [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [TSLint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint)
+
+
 ## Comandos globales
 Las dependencias de desarrollo son globales y se configuran en la paquete raíz del mono-repo. Para que un nuevo paquete pueda ejecutar estos comandos, tiene que implementarlos en su package.json de forma similar [al ejemplo de este repositorio](packages/core/package.json).
 
@@ -18,4 +26,3 @@ Se ejecuta con ``lerna run test`` y en un paquete individual con ``npm run test`
 * ["Core"](packages/core/docs/README.md)
 
 ## [Changelog](changelog.md)
- 
