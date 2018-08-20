@@ -16,11 +16,10 @@
     "dist"
   ],
   "scripts": {
-    "test": "npx ../../node_modules/.bin/jest --config ../../jest.config.js",
-    "build": "npx ../../node_modules/.bin/rollup -c ../../rollup.config.js",
-    "build2": "npx ../../build.js",
+    "test": "npx ../../scripts/test.js",
+    "build": "npx ../../scripts/build.js",
     "postbuild": "npm run docs",
-    "docs": "npx ../../node_modules/.bin/typedoc src/index.ts --options ../../typedoc.json --tsconfig ../../tsconfig.json"
+    "docs": "npx ../../scripts/docs.js"
   },
   "dependencies": {
   }
