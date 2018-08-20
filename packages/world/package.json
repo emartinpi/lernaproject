@@ -1,11 +1,13 @@
 {
-  "name": "world",
+  "name": "@monorepo/world",
+  "private": true,
   "version": "0.0.0",
   "description": "world package",
   "homepage": "",
   "license": "ISC",
-  "module": "dist/world.es.js",
-  "main": "dist/world.js",
+  "module": "dist/@monorepo/world/world.es.js",
+  "main": "dist/@monorepo/world/world.umd.js",
+  "types": "dist/@monorepo/world/index.d.ts",
   "directories": {
     "dist": "dist",
     "test": "__tests__"
@@ -14,10 +16,10 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "call ../../node_modules/.bin/rollup -c ../../rollup.config.js",
+    "test": "npx ../../scripts/test.js",
+    "build": "npx ../../scripts/build.js",
     "postbuild": "npm run docs",
-    "docs": "call ../../node_modules/.bin/typedoc src/index.ts --options ../../typedoc.json --tsconfig ../../tsconfig.json"
+    "docs": "npx ../../scripts/docs.js"
   },
   "dependencies": {
   }

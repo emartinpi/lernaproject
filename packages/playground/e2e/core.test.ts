@@ -1,4 +1,4 @@
-import { Core } from '.';
+import { Core } from '../src/index';
 
 describe('Test', () => {
   test('greet is a function', () => {

@@ -1,5 +1,5 @@
 
-#  world
+#  @monorepo/world
 
 ## Index
 
