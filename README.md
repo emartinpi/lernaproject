@@ -22,7 +22,7 @@ El índice de la documentación es el README.md del paquete raíz. Es importante
 La documentación de todos los paquetes se crea con ``lerna run docs`` o ```npm run docs``` para un sólo paquete.
 
 ## Testing
-Se ejecuta con ``lerna run test`` y en un paquete individual con ``npm run test``.
+Se ejecuta con ``lerna run test`` y en un paquete individual con ``npm run test``. Puede depurarse un archivo de tests independiente en VSCode pulsando F5 con el archivo abierto.
 
 ## Documentación de la API
 * ["Core"](packages/core/docs/README.md)
