@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "lerna run build --parallel",
-    "postinstall": "lerna run install"
+    "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
