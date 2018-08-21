@@ -1,13 +1,8 @@
 import typescript from 'rollup-plugin-typescript2';
 import json from 'rollup-plugin-json';
-import commonjs from 'rollup-plugin-commonjs';
-import generatePackageJson from 'rollup-plugin-generate-package-json';
+import resolve from 'rollup-plugin-node-resolve';
 
 const pkg = require(`${process.env.INIT_CWD}/package.json`);
-
-delete pkg.scripts;
-delete pkg.files;
-delete pkg.directories;
 
 export default {
   input: `${process.env.INIT_CWD}/src/index.ts`,
@@ -29,6 +24,11 @@ export default {
   ],
   plugins: [
     json(),
+    resolve({
+      jsnext: true,
+      main: true,
+      browser: true
+    }),
     typescript({
       tsconfigOverride: {
         useTsconfigDeclarationDir: false,
@@ -36,11 +36,6 @@ export default {
           `${process.env.INIT_CWD}/src/**/*`
         ]
       }
-    }),
-    commonjs(),
-    generatePackageJson({
-      outputFolder:`dist/${pkg.name}`,
-      baseContents: pkg
     }),
   ],
 }

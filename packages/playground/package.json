@@ -5,8 +5,9 @@
   "description": "playground package",
   "homepage": "",
   "license": "ISC",
-  "module": "dist/playground.es.js",
-  "main": "dist/playground.js",
+  "module": "public/playground.es.js",
+  "main": "public/playground.js",
+  "types": "public/index.d.ts",
   "directories": {
     "dist": "dist",
     "test": "__tests__"
@@ -15,8 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "serve": "npx ../../node_modules/.bin/jest --config ../../jest.config.js",
-    "e2e": "npx ../../node_modules/.bin/typedoc src/index.ts --options ../../typedoc.json --tsconfig ../../tsconfig.json"
+    "serve": "npx ../../scripts/serve.js"
   },
   "dependencies": {
     "@monorepo/core": "^0.0.0",
