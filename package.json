@@ -2,7 +2,8 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build": "lerna run build --parallel"
+    "build": "lerna run build --parallel",
+    "postinstall": "lerna run install"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
