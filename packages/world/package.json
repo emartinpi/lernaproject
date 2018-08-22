@@ -5,9 +5,9 @@
   "description": "world package",
   "homepage": "",
   "license": "ISC",
-  "module": "dist/@monorepo/world/world.es.js",
-  "main": "dist/@monorepo/world/world.umd.js",
-  "types": "dist/@monorepo/world/index.d.ts",
+  "module": "dist/world.es.js",
+  "main": "dist/world.umd.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "dist": "dist",
     "test": "__tests__"
@@ -18,6 +18,7 @@
   "scripts": {
     "test": "npx ../../scripts/test.js",
     "build": "npx ../../scripts/build.js",
+    "watch": "npx ../../scripts/watch.js",
     "postbuild": "npm run docs",
     "docs": "npx ../../scripts/docs.js"
   },

@@ -5,9 +5,9 @@
   "description": "core package",
   "homepage": "",
   "license": "ISC",
-  "module": "dist/@monorepo/core/core.es.js",
-  "main": "dist/@monorepo/core/core.umd.js",
-  "types": "dist/@monorepo/core/index.d.ts",
+  "module": "dist/core.es.js",
+  "main": "dist/core.umd.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "dist": "dist",
     "test": "__tests__"
@@ -18,10 +18,14 @@
   "scripts": {
     "test": "npx ../../scripts/test.js",
     "build": "npx ../../scripts/build.js",
+    "watch": "npx ../../scripts/watch.js",
     "postbuild": "npm run docs",
     "docs": "npx ../../scripts/docs.js"
   },
   "dependencies": {
-
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "@types/ramda": "github:types/npm-ramda#dist"
   }
 }

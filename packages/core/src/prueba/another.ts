@@ -1,6 +1,6 @@
 export class Another {
   poo(): string {
-    console.log('poop');
+    console.log('This workss');
     return 'poop';
   }
 }
