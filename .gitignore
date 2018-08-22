@@ -6,4 +6,6 @@ lerna-debug.log
 
 packages/*/node_modules
 packages/*/dist
+packages/*/public/*.js
+packages/*/public/*.map
 packages/*/.rpt2_cache
