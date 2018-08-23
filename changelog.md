@@ -17,4 +17,4 @@ Package: Proyectos
 - Se agrega typedoc para generar la documentación de los ficheros .ts de manera automatizada.
 - Se agrega editorconfig para los estilos de codificacion entre IDEs
 - Se crea una carpeta llamada .vscode para centralizar la configuración del workspace de Visual Studio Code y no tener conflictos con las tabulaciones, espacios, etc (no sobreescribe a editorconfig).
-- Se Agrega Package.json modificado (eliminando ciertas propiedades innecesarias)a la distribucion.
+- Se agrega el package Playground. Para realizar pruebas de manera eficaz y eficiente.

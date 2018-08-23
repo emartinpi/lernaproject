@@ -21,6 +21,18 @@ El índice de la documentación es el README.md del paquete raíz. Es importante
 
 La documentación de todos los paquetes se crea con ``lerna run docs`` o ```npm run docs``` para un sólo paquete.
 
+### Playground
+Es el lugar perfecto para realizar pruebas integradas. No necesariamente E2E, a lo mejor quieres probar como se comporta la función "X" del paquete "A" con la función "Y" del paquete "B", a fin de validar los resultados de las funciones siguiendo un flujo mas completo que solo una prueba unitaria, argumentos, posibles mejoras, etc.
+
+Para hacer funcionar el playground, se necesita realizar los siguientes pasos:
+
+- Configurar las dependencias. Se deben agregar las dependencias que se quieran probar, es aconsejable agregar todas (no los otros playgrounds!), de esta forma no te tienes que preocupar por las dependencias mas adelante, durante el desarrollo.
+- Para enlazar los diversos packages en local hay que ejecutar el siguiente comando ``lerna bootstrap``.
+- Para servir el playground hay que ejecutar desde la carpeta raiz, ``npm run serve``
+- En caso de tener multiples playgrounds, se debe configurar el puerto de estos. Por defecto es el puerto `8080`. Pero se puede modificar el valor en el package.json del package playground.
+
+En caso de agregar una dependencia en un package previamente enlazado, es muy probable que falle, porque Lerna no es el chico mas inteligente de la escuela. Para que lo tome en cuenta, hay que ejecutar el siguiente comando ``lerna clean && lerna bootstrap``. Esto reenlazara los paquetes de nuevo, incluyendo la nueva dependencia.
+
 ## Testing
 Se ejecuta con ``lerna run test`` y en un paquete individual con ``npm run test``. Puede depurarse un archivo de tests independiente en VSCode pulsando F5 con el archivo abierto.
 
