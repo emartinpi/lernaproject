@@ -1,6 +1,7 @@
 {
-    "theme": "markdown",
-    "out": "docs/",
-    "mode": "modules",
-    "readme": "none"
+  "theme": "markdown",
+  "out": "docs/",
+  "mode": "modules",
+  "readme": "none",
+  "ignoreCompilerErrors": true
 }
