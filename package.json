@@ -4,7 +4,7 @@
   "scripts": {
     "build": "lerna run build --parallel",
     "postinstall": "lerna bootstrap",
-    "serve": "concurrently \"lerna run watch --parallel\" \"lerna run serve --parallel\""
+    "serve": "concurrently \"cross-env WATCH='-w' lerna run build --parallel\" \"lerna run serve --parallel\""
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
