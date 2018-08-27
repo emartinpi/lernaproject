@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "build": "lerna run build --parallel",
-    "postinstall": "lerna bootstrap",
-    "serve": "concurrently \"cross-env WATCH='-w' lerna run build --parallel\" \"lerna run serve --parallel\""
+    "postinstall": "lerna bootstrap --hoist",
+    "serve": "npm run build && concurrently \"cross-env WATCH='-w' lerna run build --parallel\" \"lerna run serve --parallel\""
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
