@@ -4,13 +4,13 @@ module.exports = (cmd) => {
   const stream = spawn(cmd,[''], { shell: true });
 
   stream.stdout.on('data', (data) => {
-    console.log(`out: ${data}`);
+    console.log(`${data}`);
   });
-  
+
   stream.stderr.on('data', (data) => {
-    console.log(`err: ${data}`);
+    console.log(`${data}`);
   });
-  
+
   stream.on('close', (code) => {
     console.log(`child process exited with code ${code}`);
   });

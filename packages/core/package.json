@@ -23,7 +23,6 @@
     "docs": "npx ../../scripts/docs.js"
   },
   "dependencies": {
-    "ramda": "^0.25.0"
   },
   "devDependencies": {
     "@types/ramda": "github:types/npm-ramda#dist"

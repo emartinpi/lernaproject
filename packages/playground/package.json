@@ -19,8 +19,6 @@
     "serve": "npx ../../scripts/serve.js"
   },
   "dependencies": {
-    "@monorepo/core": "^0.0.0",
-    "@monorepo/world": "^0.0.0"
   },
   "lerna": {
     "port": "8080"
