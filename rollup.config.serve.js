@@ -4,13 +4,14 @@ import livereload from 'rollup-plugin-livereload';
 import serve from 'rollup-plugin-serve';
 import nodeGlobals from 'rollup-plugin-node-globals';
 import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 
 const pkg = require(`${process.env.INIT_CWD}/package.json`);
 const {
   module: moduleOutput,
   lerna: {
     port = 8080,
-  } 
+  }
 } = pkg;
 
 export default {
@@ -29,12 +30,12 @@ export default {
       main: true,
       browser: true
     }),
+    commonjs(),
     typescript({
       tsconfigOverride: {
         useTsconfigDeclarationDir: false,
         include: [
-          `${process.env.INIT_CWD}/src/**/*`,
-          `${process.env.INIT_CWD}/node_modules/@monorepo/*`,
+          `${process.env.INIT_CWD}/src/**/*`
         ]
       }
     }),
@@ -42,6 +43,7 @@ export default {
     //livereload(),
     serve({
       contentBase: `${process.env.INIT_CWD}/public`,
+      host: '127.0.0.1',
       port,
       open: true
     })

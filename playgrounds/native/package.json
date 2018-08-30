@@ -1,12 +1,12 @@
 {
-  "name": "@monorepo/playground",
+  "name": "native",
   "private": true,
   "version": "0.0.0",
-  "description": "playground package",
+  "description": "native playground",
   "homepage": "",
   "license": "ISC",
-  "module": "public/playground.es.js",
-  "main": "public/playground.js",
+  "module": "public/native.es.js",
+  "main": "public/native.js",
   "types": "public/index.d.ts",
   "directories": {
     "dist": "dist",
@@ -16,9 +16,12 @@
     "dist"
   ],
   "scripts": {
+    "start": "npm run serve",
     "serve": "npx ../../scripts/serve.js"
   },
   "dependencies": {
+    "@monorepo/http": "^0.0.0",
+    "axios": "^0.18.0"
   },
   "lerna": {
     "port": "8080"

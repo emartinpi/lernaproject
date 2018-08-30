@@ -1,12 +1,12 @@
 {
-  "name": "@monorepo/core",
+  "name": "@monorepo/http",
   "private": true,
   "version": "0.0.0",
-  "description": "core package",
+  "description": "http package",
   "homepage": "",
   "license": "ISC",
-  "module": "dist/core.es.js",
-  "main": "dist/core.umd.js",
+  "module": "dist/http.es.js",
+  "main": "dist/http.umd.js",
   "types": "dist/index.d.ts",
   "directories": {
     "dist": "dist",
@@ -18,13 +18,11 @@
   "scripts": {
     "test": "npx ../../scripts/test.js",
     "build": "npx ../../scripts/build.js",
-    "watch": "npx ../../scripts/watch.js",
-    "postbuild": "npm run docs",
+    "watch": "npx cross-env WATCH='-w' npm run build",
     "docs": "npx ../../scripts/docs.js"
   },
   "dependencies": {
   },
   "devDependencies": {
-    "@types/ramda": "github:types/npm-ramda#dist"
   }
 }

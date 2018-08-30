@@ -6,7 +6,7 @@
   "jsRules": {},
   "rules": {
     "class-name": true,
-    "no-any": true,
+    "no-any": false,
     "no-unused-variable": true,
     "quotemark": [
       true,
