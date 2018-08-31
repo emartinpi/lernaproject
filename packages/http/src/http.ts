@@ -6,32 +6,41 @@ interface HttpApi {
 
 type Factory<A> = () => A;
 
-type FactoryBuilder<F> = (
-  ((factory: F) => F) |
-  ((p1: any, factory: F) => F) |
-  ((p1: any, p2: any, factory: F) => F) |
-  ((p1: any, p2: any, p3: any, factory: F) => F)
-);
+// type FactoryBuilder<F> = (
+//   ((factory: F) => F) |
+//   ((p1: any, factory: F) => F) |
+//   ((p1: any, p2: any, factory: F) => F)
+// );
+
+type FactoryBuilder0<F> = (factory: F) => F;
+type FactoryBuilder1<F> = (param1: any, factory: F) => F;
+type FactoryBuilder2<F> = (param1: any, param2: any, factory: F) => F;
 
 export const darwinHttpFactory: Factory<HttpApi> = () => {
-  const warning = () => console.log('Se necesita configurar proveedor...');
+  const warning = () => console.log(
+    '%cWarning => %cdarwinHttpFactory(): %cSe necesita configurar proveedor...',
+    'background: #222; color:#ffff00',
+    'background: #222; color:#ff8000',
+    'background: #222; color: #fff',
+  );
+
   return {
     get() { warning(); },
     post() { warning(); },
   };
 };
 
-export const addProvider: FactoryBuilder<Factory<HttpApi>> =
+export const addProvider: FactoryBuilder1<Factory<HttpApi>> =
   (provider: any, factory: Factory<HttpApi>) => new Proxy<Factory<HttpApi>>(factory, {
     apply(target: any, thisArg: any, argumentsList: any) {
-      return () => ({
+      return {
         get(...args: any[]) {
           provider.get.apply(provider, args);
         },
         post(...args: any[]) {
           provider.post.apply(provider, args);
         },
-      });
+      };
     },
   });
 

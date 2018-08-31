@@ -1,32 +1,22 @@
-function addProvider(provider) {
+const darwinHttpFactory = () => {
+    const warning = () => console.log('%cWarning => %cdarwinHttpFactory(): %cSe necesita configurar proveedor...', 'background: #222; color:#ffff00', 'background: #222; color:#ff8000', 'background: #222; color: #fff');
     return {
-        get(...args) {
-            console.log('aquiii');
-            provider.get.call(provider, ...args);
-        },
-        post(...args) {
-            provider.post.call(provider, ...args);
-        },
+        get() { warning(); },
+        post() { warning(); },
     };
-}
-function configHeaders(headers, lib) {
-    return {
-        get(...args) {
-            const options = Object.assign({}, args[1], { ...getHeadersFromOptions(args[1]), ...headers });
-            lib.get.call(lib, args[0], options);
-        },
-        post(...args) {
-            const options = Object.assign({}, args[2], { ...getHeadersFromOptions(args[2]), ...headers });
-            lib.post.call(lib, args[0], args[1], options);
-        },
-    };
-}
-function getHeadersFromOptions(options) {
-    if (options && options.headers) {
-        return { ...options.headers };
-    }
-    return {};
-}
+};
+const addProvider = (provider, factory) => new Proxy(factory, {
+    apply(target, thisArg, argumentsList) {
+        return {
+            get(...args) {
+                provider.get.apply(provider, args);
+            },
+            post(...args) {
+                provider.post.apply(provider, args);
+            },
+        };
+    },
+});
 
 var bind = function bind(fn, thisArg) {
   return function wrap() {
@@ -1573,9 +1563,8 @@ axios_1.default = default_1;
 
 var axios$1 = axios_1;
 
-const myHttp = addProvider(axios$1);
-console.log('asdf');
-const myHttp2 = configHeaders({ 'X-Requested-With': 'DarwinXMLHttpRequest' }, myHttp);
-myHttp2.get('/user');
+const darwinHttp1 = addProvider(axios$1, darwinHttpFactory);
+// const myHttp2 = configHeaders({ 'X-Requested-With': 'DarwinXMLHttpRequest' }, myHttp);
+darwinHttp1().get('/users');
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=native.es.js.map
