@@ -1,10 +1,10 @@
-import { darwinHttpFactory, addProvider } from '@monorepo/http';
+import { darwinHttpFactory, addProvider, configHeaders } from '@monorepo/http';
 import axios from 'axios';
 
-const httpApi = darwinHttpFactory();
+// const httpApi = darwinHttpFactory();
 
-const darwinHttp1 = addProvider(axios, darwinHttpFactory);
+const darwinHttp1 = configHeaders({ 'X-Requested-With': 'DarwinXMLHttpRequest' }, darwinHttpFactory);
 
-// const myHttp2 = configHeaders({ 'X-Requested-With': 'DarwinXMLHttpRequest' }, myHttp);
+const darwinHttp2 = addProvider(axios, darwinHttp1);
 
-darwinHttp1().get('/users');
+darwinHttp2().get('/users');

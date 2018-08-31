@@ -16,7 +16,8 @@ type FactoryBuilder0<F> = (factory: F) => F;
 type FactoryBuilder1<F> = (param1: any, factory: F) => F;
 type FactoryBuilder2<F> = (param1: any, param2: any, factory: F) => F;
 
-export const darwinHttpFactory: Factory<HttpApi> = () => {
+export
+const darwinHttpFactory: Factory<HttpApi> = () => {
   const warning = () => console.log(
     '%cWarning => %cdarwinHttpFactory(): %cSe necesita configurar proveedor...',
     'background: #222; color:#ffff00',
@@ -30,35 +31,38 @@ export const darwinHttpFactory: Factory<HttpApi> = () => {
   };
 };
 
-export const addProvider: FactoryBuilder1<Factory<HttpApi>> =
-  (provider: any, factory: Factory<HttpApi>) => new Proxy<Factory<HttpApi>>(factory, {
-    apply(target: any, thisArg: any, argumentsList: any) {
+export
+const addProvider: FactoryBuilder1<Factory<HttpApi>> =
+  (provider: any, factory: Factory<HttpApi>) => new Proxy(factory, {
+    apply(target, thisArg, argumentsList) {
+      const api = target();
       return {
         get(...args: any[]) {
-          provider.get.apply(provider, args);
+          provider.get(...args);
         },
         post(...args: any[]) {
-          provider.post.apply(provider, args);
+          provider.post(...args);
         },
       };
     },
   });
 
-// export const configHeaders: FactoryBuilder<Factory<HttpApi>> =
-//   (headers: object, httpFactory: Factory<HttpApi>): Http {
-//     return {
-//       get(...args: any[]) {
-//         lib.get.call(lib, args[0], options);
-//       },
-//       post(...args: any[]) {
-//         lib.post.call(lib, args[0], args[1], options);
-//       },
-//     };
-//   }
+interface Header {
+  [key: string]: string;
+}
 
-// function getHeadersFromOptions(options: any) {
-//   if (options && options.headers) {
-//     return { ...options.headers };
-//   }
-//   return {};
-// }
+export
+const configHeaders: FactoryBuilder1<Factory<HttpApi>> =
+  (headers: Header, factory: Factory<HttpApi>) => new Proxy(factory, {
+    apply(target, thisArg, argumentsList) {
+      const api = target(); // obtiene la api que hubiera configurada hasta este momento
+      return {
+        get(...args: any[]) {
+          api.get(args[0], { headers });
+        },
+        post(...args: any[]) {
+          api.post(args[0], args[1], { headers });
+        },
+      };
+    },
+  });
