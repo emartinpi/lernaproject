@@ -21,7 +21,11 @@
   },
   "dependencies": {
     "@monorepo/http": "^0.0.0",
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "@types/ramda": "^0.25.37"
   },
   "lerna": {
     "port": "8080"
