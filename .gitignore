@@ -9,3 +9,9 @@ packages/*/dist
 packages/*/public/*.js
 packages/*/public/*.map
 packages/*/.rpt2_cache
+
+playgrounds/*/node_modules
+playgrounds/*/dist
+playgrounds/*/public/*.js
+playgrounds/*/public/*.map
+playgrounds/*/.rpt2_cache
