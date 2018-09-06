@@ -1,4 +1,4 @@
-import { DarwinHttpService } from './darwin-http/darwin-http.service';
+import { DarwinHttpClient } from './darwin-http/darwin-http.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular';
 
-  constructor(dhs: DarwinHttpService) {
+  constructor(dhs: DarwinHttpClient) {
     dhs.mimetodo();
   }
 }
