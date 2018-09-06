@@ -26,5 +26,8 @@
   },
   "lerna": {
     "port": "8080"
+  },
+  "devDependencies": {
+    "@types/ramda": "^0.25.37"
   }
 }
