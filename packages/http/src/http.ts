@@ -1,4 +1,4 @@
-import  { curry } from 'ramda';
+import  { curry, CurriedFunction2, CurriedFunction3 } from 'ramda';
 import { Observable } from 'rxjs';
 
 interface HttpApi<R> {
@@ -107,15 +107,15 @@ const configToken: <R extends any>(p1: string, p2: Client, factory: Factory<Http
     });
   };
 
-const addProviderCurrified = curry(addProvider);
-const configHeadersCurrified = curry(configHeaders); // tslint:disable-line
-const configTokenCurrified = curry(configToken); // tslint:disable-line
+const addProviderCurrified: CurriedFunction2<HttpApi<any>, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(addProvider);
+const configHeadersCurrified: CurriedFunction2<Header, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(configHeaders); // tslint:disable-line
+const configTokenCurrified: CurriedFunction3<string, Client, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(configToken); // tslint:disable-line
 
 export {
   darwinHttpFactory,
-  addProviderCurrified as addProvider,
-  configHeadersCurrified as configHeaders,
-  configTokenCurrified as configToken,
+  addProvider, addProviderCurrified,
+  configHeaders, configTokenCurrified,
+  configToken, configHeadersCurrified,
 };
 
 /**
