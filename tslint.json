@@ -12,7 +12,7 @@
       true,
       "single"
     ],
-    "max-line-length": [true, 120]
+    "max-line-length": [true, 150]
   },
   "rulesDirectory": []
 }

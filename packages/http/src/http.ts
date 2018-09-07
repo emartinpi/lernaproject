@@ -1,9 +1,9 @@
 import  { curry } from 'ramda';
 import { Observable } from 'rxjs';
 
-interface HttpApi {
-  get(url: string, options?: any): Promise<any>;
-  post(url: string, data: any, options?: any): Promise<any>;
+interface HttpApi<R> {
+  get(url: string, options?: any): R;
+  post(url: string, data: any, options?: any): R;
   [propName: string]: any;
 }
 
@@ -21,7 +21,7 @@ type FactoryBuilder2Promise<P, Q, A> = (p1: P, p2: Q, factory:  Factory<A>) => P
 
 let darwinProvider: any; // libreria a usar para hacer las llamadas AJAX
 
-const darwinHttpFactory: Factory<HttpApi> = () => {
+const darwinHttpFactory: Factory<HttpApi<any>> = () => {
   const warning = () => console.log(
     '%cWarning => %cdarwinHttpFactory(): %cSe necesita configurar proveedor...',
     'background: #222; color:#ffff00',
@@ -39,8 +39,8 @@ const darwinHttpFactory: Factory<HttpApi> = () => {
   };
 };
 
-const addProvider: FactoryBuilder1Promise<HttpApi, HttpApi> =
-  (provider: HttpApi, factory: Factory<HttpApi>) => {
+const addProvider: <R, S extends R>(p1: HttpApi<R>, factory: Factory<HttpApi<S>>) => Promise<Factory<HttpApi<R>>> =
+  (provider, factory) => {
     darwinProvider = provider;
     return Promise.resolve(factory);
   };
@@ -122,3 +122,4 @@ export {
 function isObservable(param: Observable<any> | Promise<any>): param is Observable<any> {
   return (<Observable<any>>param).subscribe !== undefined;
 }
+
