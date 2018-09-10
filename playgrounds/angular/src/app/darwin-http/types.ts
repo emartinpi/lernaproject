@@ -1,4 +1,4 @@
-interface DarwinHttpModuleConfig {
+export interface DarwinHttpModuleConfig {
   token?: {
     service: string,
     id: string;
