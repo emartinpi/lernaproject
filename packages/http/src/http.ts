@@ -1,7 +1,7 @@
 import  { curry, CurriedFunction2, CurriedFunction3 } from 'ramda';
 import { Observable } from 'rxjs';
 
-interface HttpApi<R> {
+export interface HttpApi<R> {
   get(url: string, options?: any): R;
   post(url: string, data: any, options?: any): R;
   [propName: string]: any;
@@ -15,13 +15,13 @@ interface Client {
   secret: string;
 }
 
-type Factory<A> = () => A;
+export type Factory<A> = () => A;
 // type FactoryBuilder1Promise<P, A> = (p1: P, factory: Factory<A>) => Promise<Factory<A>>;
 // type FactoryBuilder2Promise<P, Q, A> = (p1: P, p2: Q, factory:  Factory<A>) => Promise<Factory<A>>;
 
 let darwinProvider: any; // libreria a usar para hacer las llamadas AJAX
 
-const darwinHttpFactory: Factory<HttpApi<any>> = () => {
+export const darwinHttpFactory: Factory<HttpApi<any>> = () => {
   const warning = () => console.log(
     '%cWarning => %cdarwinHttpFactory(): %cSe necesita configurar proveedor...',
     'background: #222; color:#ffff00',
@@ -39,13 +39,13 @@ const darwinHttpFactory: Factory<HttpApi<any>> = () => {
   };
 };
 
-const addProvider: <R, S extends R>(p1: HttpApi<R>, factory: Factory<HttpApi<S>>) => Promise<Factory<HttpApi<R>>> =
+export const addProvider: <R, S extends R>(p1: HttpApi<R>, factory: Factory<HttpApi<S>>) => Promise<Factory<HttpApi<R>>> =
   (provider, factory) => {
     darwinProvider = provider;
     return Promise.resolve(factory);
   };
 
-const configHeaders: <R>(p1: Header, factory: Factory<HttpApi<R>>) => Promise<Factory<HttpApi<R>>> =
+export const configHeaders: <R>(p1: Header, factory: Factory<HttpApi<R>>) => Promise<Factory<HttpApi<R>>> =
   (headers, factory) => {
     return Promise.resolve(
       new Proxy(factory, {
@@ -66,18 +66,19 @@ const configHeaders: <R>(p1: Header, factory: Factory<HttpApi<R>>) => Promise<Fa
     );
   };
 
-const configToken: <R extends any>(p1: string, p2: Client, factory: Factory<HttpApi<R>>) => Promise<Factory<HttpApi<R>>> =
+export const configToken: <R extends any>(p1: string, p2: Client, factory: Factory<HttpApi<R>>) => Promise<Factory<HttpApi<R>>> =
   (tokenServiceUrl, client, factory) => {
     return new Promise((resolve, reject) => {
       const api = factory();
       const post = api.post(tokenServiceUrl, 'grant_type=client_credentials', {
         headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
           Authorization: `Basic ${btoa(`${client.id}:${client.secret}`)}`,
         },
       });
 
       const callbackOK = (res: any) => {
-        const token = res.data;
+        const token = res.data ? res.data : res;
         resolve(
           new Proxy(factory, {
             apply(target, thisArg, argumentsList) {
@@ -107,16 +108,9 @@ const configToken: <R extends any>(p1: string, p2: Client, factory: Factory<Http
     });
   };
 
-const addProviderCurrified: CurriedFunction2<HttpApi<any>, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(addProvider);
-const configHeadersCurrified: CurriedFunction2<Header, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(configHeaders); // tslint:disable-line
-const configTokenCurrified: CurriedFunction3<string, Client, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(configToken); // tslint:disable-line
-
-export {
-  darwinHttpFactory,
-  addProvider, addProviderCurrified,
-  configHeaders, configTokenCurrified,
-  configToken, configHeadersCurrified,
-};
+export const addProviderCurrified: CurriedFunction2<HttpApi<any>, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(addProvider);
+export const configHeadersCurrified: CurriedFunction2<Header, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(configHeaders);
+export const configTokenCurrified: CurriedFunction3<string, Client, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(configToken);
 
 /**
  * Utils
