@@ -14,15 +14,14 @@ export class DarwinHttpConfigService {
   }
 
   async darwinHttpClientConfig(http: HttpClient, config: DarwinHttpModuleConfig) {
+    const {headers, token: {service, id, secret}} = config;
     const darwinHttpFactoryBuilder = pipeP(
       addProviderCurrified(http),
-      configHeadersCurrified({'X-Requested-With': 'DarwinXMLHttpRequest-X'}),
-      configTokenCurrified('https://accounts.spotify.com/api/token', {
-        id: '6aa367588666404db1162e5ba087998d',
-        secret: '2b6f5eef0cb54ea496a1710ff743bcd7',
-      }),
+      configHeadersCurrified(headers),
+      configTokenCurrified(service, { id, secret }),
     );
     const darwinHttpFactoryConfigured = await darwinHttpFactoryBuilder(darwinHttpFactory);
+    console.log('asdf');
     this._api = darwinHttpFactoryConfigured();
   }
 
@@ -30,9 +29,6 @@ export class DarwinHttpConfigService {
     return this._api;
   }
 }
-
-
-
 
 
 @Injectable()

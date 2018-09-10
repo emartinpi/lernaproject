@@ -10,7 +10,16 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    DarwinHttpModule.forRoot({})
+    DarwinHttpModule.forRoot({
+      headers: {
+        'X-Requested-With': 'DarwinXMLHttpRequest-X'
+      },
+      token: {
+        service: 'https://accounts.spotify.com/api/token',
+        id: '6aa367588666404db1162e5ba087998d',
+        secret: '2b6f5eef0cb54ea496a1710ff743bcd7'
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
