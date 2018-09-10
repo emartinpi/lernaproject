@@ -1,4 +1,4 @@
-import  { curry, CurriedFunction2, CurriedFunction3 } from 'ramda';
+import  { curry, clone, CurriedFunction2, CurriedFunction3 } from 'ramda';
 import { Observable } from 'rxjs';
 
 export interface HttpApi<R> {
@@ -29,14 +29,14 @@ export const darwinHttpFactory: Factory<HttpApi<any>> = () => {
     'background: #222; color: #fff',
   );
 
-  return {
+  return Object.assign({}, clone(darwinProvider), {
     get(...args: any[]) {
       return darwinProvider ? darwinProvider.get(...args) : warning();
     },
     post(...args: any[]) {
       return darwinProvider ? darwinProvider.post(...args) : warning();
     },
-  };
+  });
 };
 
 export const addProvider: <R, S extends R>(p1: HttpApi<R>, factory: Factory<HttpApi<S>>) => Promise<Factory<HttpApi<R>>> =
@@ -51,7 +51,7 @@ export const configHeaders: <R>(p1: Header, factory: Factory<HttpApi<R>>) => Pro
       new Proxy(factory, {
         apply(target, thisArg, argumentsList) {
           const api = target(); // obtiene la api que hubiera configurada hasta este momento
-          return {
+          return Object.assign({}, clone(darwinProvider), {
             get(...args: any[]) {
               const allHeaders: Header = Object.assign({}, args[1] ? args[1].headers : {}, headers);
               return api.get(args[0], { headers: allHeaders });
@@ -60,7 +60,7 @@ export const configHeaders: <R>(p1: Header, factory: Factory<HttpApi<R>>) => Pro
               const allHeaders: Header = Object.assign({}, args[2] ? args[2].headers : {}, headers);
               return api.post(args[0], args[1], { headers: allHeaders });
             },
-          };
+          });
         },
       }),
     );
@@ -85,7 +85,7 @@ export const configToken: <R extends any>(p1: string, p2: Client, factory: Facto
               const tokenHeader: Header = {
                 Authorization: `Bearer ${token.access_token}`,
               };
-              return {
+              return Object.assign({}, clone(darwinProvider), {
                 get(...args: any[]) {
                   const allHeaders: Header = Object.assign({}, args[1] ? args[1].headers : {}, tokenHeader);
                   return api.get(args[0], { headers: allHeaders });
@@ -94,7 +94,7 @@ export const configToken: <R extends any>(p1: string, p2: Client, factory: Facto
                   const allHeaders: Header = Object.assign({}, args[2] ? args[2].headers : {}, tokenHeader);
                   return api.post(args[0], args[1], { headers: allHeaders });
                 },
-              };
+              });
             },
           }),
         );
