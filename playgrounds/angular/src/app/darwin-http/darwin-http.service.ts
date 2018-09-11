@@ -21,7 +21,6 @@ export class DarwinHttpConfigService {
       configTokenCurrified(service, { id, secret }),
     );
     const darwinHttpFactoryConfigured = await darwinHttpFactoryBuilder(darwinHttpFactory);
-    console.log('asdf');
     this._api = darwinHttpFactoryConfigured();
   }
 

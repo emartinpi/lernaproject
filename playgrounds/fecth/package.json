@@ -1,0 +1,32 @@
+{
+  "name": "fetch",
+  "private": true,
+  "version": "0.0.0",
+  "description": "fecth playground",
+  "homepage": "",
+  "license": "ISC",
+  "module": "public/fetch.es.js",
+  "main": "public/fetch.js",
+  "types": "public/fetch.d.ts",
+  "directories": {
+    "dist": "dist",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "npx ../../scripts/serve.js"
+  },
+  "dependencies": {
+    "@monorepo/http": "^0.0.0",
+    "ramda": "^0.25.0"
+  },
+  "lerna": {
+    "port": "8080"
+  },
+  "devDependencies": {
+    "@types/ramda": "^0.25.37"
+  }
+}
