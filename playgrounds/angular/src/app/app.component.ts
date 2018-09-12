@@ -1,8 +1,5 @@
-import { HttpApi } from './../../../../packages/http/src/http';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DarwinHttpService } from './darwin-http/darwin-http.service';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-
 
 @Component({
   selector: 'app-root',

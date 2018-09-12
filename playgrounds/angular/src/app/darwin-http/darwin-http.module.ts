@@ -1,12 +1,9 @@
 import { DarwinHttpConfigService, DarwinHttpService } from './darwin-http.service';
-import { Observable } from 'rxjs';
-import { addProvider, darwinHttpFactory, HttpApi, Factory } from '@monorepo/http';
 import { DarwinHttpModuleConfig } from './types';
-import { NgModule, ModuleWithProviders, APP_INITIALIZER, InjectionToken } from '@angular/core';
+import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-export const _DARWIN_HTTP_CLIENT = new InjectionToken('darwinHttpFactory');
 
 @NgModule({
   imports: [
