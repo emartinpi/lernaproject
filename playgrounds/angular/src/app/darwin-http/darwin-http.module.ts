@@ -18,19 +18,17 @@ export class DarwinHttpModule {
     return {
       ngModule: DarwinHttpModule,
       providers: [
-        DarwinHttpConfigService,
         {
           provide: APP_INITIALIZER,
           useFactory: factoryDarwinHttpClient(config),
-          deps: [HttpClient, DarwinHttpConfigService],
+          deps: [HttpClient],
           multi: true
         },
         {
           provide: DarwinHttpService,
-          useFactory: (darwinHttpConfig: DarwinHttpConfigService) => {
-            return darwinHttpConfig.getHttpClient();
+          useFactory: () => {
+            return DarwinHttpConfigService.getHttpClient();
           },
-          deps: [DarwinHttpConfigService]
         }
       ]
     };
@@ -38,8 +36,8 @@ export class DarwinHttpModule {
 }
 
 export function factoryDarwinHttpClient(config: DarwinHttpModuleConfig) {
-  return (http: HttpClient, darwinHttpConfig: DarwinHttpConfigService) => {
-    return () => darwinHttpConfig.darwinHttpClientConfig(http, config);
+  return (http: HttpClient) => {
+    return () => DarwinHttpConfigService.darwinHttpClientConfig(http, config);
   };
 }
 

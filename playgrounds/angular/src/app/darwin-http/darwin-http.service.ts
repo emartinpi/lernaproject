@@ -6,12 +6,9 @@ import { pipeP } from 'ramda';
 
 @Injectable()
 export class DarwinHttpConfigService {
-  private _api;
+  static _api;
 
-  constructor() {
-  }
-
-  async darwinHttpClientConfig(http: HttpClient, config: DarwinHttpModuleConfig) {
+  static async darwinHttpClientConfig(http: HttpClient, config: DarwinHttpModuleConfig) {
     const {headers, token: {service, id, secret}} = config;
     const darwinHttpFactoryBuilder = pipeP(
       addProvider(http),
@@ -22,10 +19,10 @@ export class DarwinHttpConfigService {
     this._api = darwinHttpFactoryConfigured();
   }
 
-  getHttpClient() {
+  static getHttpClient() {
     return this._api;
   }
 }
 @Injectable()
-export class DarwinHttpService extends HttpClient {
+export abstract class DarwinHttpService extends HttpClient {
 }
