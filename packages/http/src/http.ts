@@ -1,27 +1,10 @@
-import  { curry, clone, CurriedFunction2, CurriedFunction3 } from 'ramda';
+import { curry, clone } from 'ramda';
 import { Observable } from 'rxjs';
-
-export interface HttpApi<R> {
-  get(url: string, options?: any): R;
-  post(url: string, data: any, options?: any): R;
-  [propName: string]: any;
-}
-
-interface Header {
-  [key: string]: string;
-}
-interface Client {
-  id: string;
-  secret: string;
-}
-
-export type Factory<A> = () => A;
-// type FactoryBuilder1Promise<P, A> = (p1: P, factory: Factory<A>) => Promise<Factory<A>>;
-// type FactoryBuilder2Promise<P, Q, A> = (p1: P, p2: Q, factory:  Factory<A>) => Promise<Factory<A>>;
+import { Factory, HttpApi, Header, Client, CurriedAddProvider2, CurriedConfigHeaders2, CurriedConfigToken3 } from './types';
 
 let darwinProvider: any; // libreria a usar para hacer las llamadas AJAX
 
-export const darwinHttpFactory: Factory<HttpApi<any>> = () => {
+const darwinHttpFactory: Factory<HttpApi> = () => {
   const warning = () => console.log(
     '%cWarning => %cdarwinHttpFactory(): %cSe necesita configurar proveedor...',
     'background: #222; color:#ffff00',
@@ -29,29 +12,29 @@ export const darwinHttpFactory: Factory<HttpApi<any>> = () => {
     'background: #222; color: #fff',
   );
 
-  return Object.assign({}, clone(darwinProvider), {
+  return {
     get(...args: any[]) {
       return darwinProvider ? darwinProvider.get(...args) : warning();
     },
     post(...args: any[]) {
       return darwinProvider ? darwinProvider.post(...args) : warning();
     },
-  });
+  };
 };
 
-export const addProvider: <R, S extends R>(p1: HttpApi<R>, factory: Factory<HttpApi<S>>) => Promise<Factory<HttpApi<R>>> =
+const addProvider: <P extends HttpApi, Q extends HttpApi>(p1: P, factory: Factory<Q>) => Promise<Factory<P>> =
   (provider, factory) => {
     darwinProvider = provider;
-    return Promise.resolve(factory);
+    return Promise.resolve(factory as any);
   };
 
-export const configHeaders: <R>(p1: Header, factory: Factory<HttpApi<R>>) => Promise<Factory<HttpApi<R>>> =
+const configHeaders: <P extends HttpApi>(p1: Header, factory: Factory<P>) => Promise<Factory<P>> =
   (headers, factory) => {
     return Promise.resolve(
       new Proxy(factory, {
         apply(target, thisArg, argumentsList) {
           const api = target(); // obtiene la api que hubiera configurada hasta este momento
-          return Object.assign({}, clone(darwinProvider), {
+          return Object.assign({}, clone(api), {
             get(...args: any[]) {
               const allHeaders: Header = Object.assign({}, args[1] ? args[1].headers : {}, headers);
               return api.get(args[0], { headers: allHeaders });
@@ -66,7 +49,7 @@ export const configHeaders: <R>(p1: Header, factory: Factory<HttpApi<R>>) => Pro
     );
   };
 
-export const configToken: <R extends any>(p1: string, p2: Client, factory: Factory<HttpApi<R>>) => Promise<Factory<HttpApi<R>>> =
+const configToken: <P extends HttpApi>(p1: string, p2: Client, factory: Factory<P>) => Promise<Factory<P>> =
   (tokenServiceUrl, client, factory) => {
     return new Promise((resolve, reject) => {
       const api = factory();
@@ -108,9 +91,16 @@ export const configToken: <R extends any>(p1: string, p2: Client, factory: Facto
     });
   };
 
-export const addProviderCurrified: CurriedFunction2<HttpApi<any>, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(addProvider);
-export const configHeadersCurrified: CurriedFunction2<Header, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(configHeaders);
-export const configTokenCurrified: CurriedFunction3<string, Client, Factory<HttpApi<any>>, Promise<Factory<HttpApi<any>>>> = curry(configToken);
+const addProviderCurrified: CurriedAddProvider2 = curry(addProvider);
+const configHeadersCurrified: CurriedConfigHeaders2 = curry(configHeaders);
+const configTokenCurrified: CurriedConfigToken3 = curry(configToken);
+
+export {
+  darwinHttpFactory,
+  addProviderCurrified as addProvider,
+  configHeadersCurrified as configHeaders,
+  configTokenCurrified as configToken,
+};
 
 /**
  * Utils
